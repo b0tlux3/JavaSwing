@@ -5,6 +5,8 @@
  */
 package sesion05.jframe.forms;
 
+import com.ws.Producto;
+import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,10 +17,9 @@ import sesion05.jframe.principal.menuPrincipal2;
  * @author Admin
  */
 public class jFormProductosUser extends javax.swing.JFrame {
-    
-     DefaultTableModel modelo3 = new DefaultTableModel(null, new String[]{
-        "Codigo", "Descripcion",
-        "Precio", "Stock", "Categoria"});
+
+    DefaultTableModel modelo3 = new DefaultTableModel(null, new String[]{
+        "Descripcion", "Precio", "Stock"});
     boolean estado_txtFields = true;
 
     /**
@@ -26,6 +27,18 @@ public class jFormProductosUser extends javax.swing.JFrame {
      */
     public jFormProductosUser() {
         initComponents();
+
+        ArrayList<Producto> listaProducto = (ArrayList) getListaProductos();
+
+        jTable2.putClientProperty("Terminate edit", Boolean.TRUE);
+        for (int i = 0; i < listaProducto.size(); i++) {
+            modelo3.addRow(new Object[]{
+                listaProducto.get(i).getDescripcion(),
+                listaProducto.get(i).getPrecioProducto(),
+                listaProducto.get(i).getStockProducto(),});
+
+        }
+
     }
 
     /**
@@ -50,12 +63,14 @@ public class jFormProductosUser extends javax.swing.JFrame {
         ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setFont(new java.awt.Font("Gisha", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Menu Principal");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -66,7 +81,7 @@ public class jFormProductosUser extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("X");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -130,6 +145,7 @@ public class jFormProductosUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -143,7 +159,7 @@ public class jFormProductosUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         JDialog.setDefaultLookAndFeelDecorated(true);
         int response = JOptionPane.showConfirmDialog(null, "Realmente salir?", "Confirmar",
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.NO_OPTION) {
             System.out.println("Regreso");
         } else if (response == JOptionPane.YES_OPTION) {
@@ -197,4 +213,10 @@ public class jFormProductosUser extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JScrollPane jsTProducto;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ws.Producto> getListaProductos() {
+        com.ws.WsGetListaProductos_Service service = new com.ws.WsGetListaProductos_Service();
+        com.ws.WsGetListaProductos port = service.getWsGetListaProductosPort();
+        return port.getListaProductos();
+    }
 }

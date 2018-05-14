@@ -269,7 +269,7 @@ public class jLoginUser extends javax.swing.JFrame {
 
         if (usuObj != null) {
             System.out.println("Bienvenido Usuario: " + id);
-            menuPrincipal menuPrin1 = new menuPrincipal();
+            menuPrincipal2 menuPrin1 = new menuPrincipal2();
             dispose();  
             menuPrin1.setVisible(true);
 

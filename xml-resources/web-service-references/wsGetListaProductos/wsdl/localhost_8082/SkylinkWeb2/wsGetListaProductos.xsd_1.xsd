@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6-1b01  svn-revision#13094. --><xs:schema xmlns:tns="http://ws.skylinksystem/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.skylinksystem/">
+
+<xs:element name="getListaProductos" type="tns:getListaProductos"/>
+
+<xs:element name="getListaProductosResponse" type="tns:getListaProductosResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getListaProductos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getListaProductosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:producto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="producto">
+<xs:sequence>
+<xs:element name="codigoProducto" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="idCategoria" type="xs:string" minOccurs="0"/>
+<xs:element name="precioProducto" type="xs:string" minOccurs="0"/>
+<xs:element name="stockProducto" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

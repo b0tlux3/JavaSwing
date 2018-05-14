@@ -5,6 +5,8 @@
  */
 package sesion05.jframe.principal;
 
+import sesion05.jframe.forms.jFormProductosUser;
+
 /**
  *
  * @author Admin
@@ -80,6 +82,11 @@ public class menuPrincipal2 extends javax.swing.JFrame {
         jMenu5.setText("Consultas Skylink");
 
         jMenuItem3.setText("Productos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem3);
 
         jMenuBar1.add(jMenu5);
@@ -106,6 +113,15 @@ public class menuPrincipal2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        jFormProductosUser formProductosWS = new jFormProductosUser();
+            dispose();  
+            formProductosWS.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

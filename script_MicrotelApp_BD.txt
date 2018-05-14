@@ -1,0 +1,30 @@
+begin
+drop table TBMICROTEL_USERS;
+drop table TBMICROTEL_USERSROLES;
+end;
+-- 1 --
+create table TBMICROTEL_USERSROLES
+(
+TIPO_ID char(3) not null PRIMARY KEY,
+TIPO_NAME varchar2(10) not null
+);
+insert into TBMICROTEL_USERSROLES values ('100', 'USER');
+insert into TBMICROTEL_USERSROLES values ('200', 'ADMIN');
+-- 1 --
+-- 2 --
+create table TBMICROTEL_USERS
+(
+USUARIO_ID varchar2(6) PRIMARY KEY not null,
+USUARIO_NAME varchar2(20) not null,
+USUARIO_PASSWORD varchar2(20) not null,
+TIPO_ID char(3) not null,
+ACTIVO char(1) not null
+);
+ALTER TABLE TBMICROTEL_USERS ADD CONSTRAINT fk_TBMICROTEL_USERS FOREIGN KEY (TIPO_ID) REFERENCES TBMICROTEL_USERSROLES(TIPO_ID);
+begin
+INSERT INTO TBMICROTEL_USERS VALUES ('1000','upnuser','12345','100','1');
+INSERT INTO TBMICROTEL_USERS VALUES ('1001','admin','qwerty','200','1');
+INSERT INTO TBMICROTEL_USERS VALUES ('1002','upnprueba','123','100','1');
+INSERT INTO TBMICROTEL_USERS VALUES ('1003','upnadmin','qwerty','200','1');
+end;
+-- 2 --

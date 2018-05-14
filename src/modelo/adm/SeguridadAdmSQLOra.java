@@ -20,7 +20,7 @@ public class SeguridadAdmSQLOra implements
         try {
 
             PreparedStatement ps = conn.prepareStatement(
-                    "select usuario_id, tipo_id from tb_users where usuario_name =  ? and usuario_password = ? and activo=?");
+                    "select usuario_id, tipo_id from TBMICROTEL_USERS where usuario_name =  ? and usuario_password = ? and activo=?");
             ps.setString(1, usuario);
             ps.setString(2, clave);
             ps.setString(3, "1");
@@ -52,7 +52,7 @@ public class SeguridadAdmSQLOra implements
 
         try {
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select u.usuario_id, usuario_name, usuario_password,  r.tipo_name from tb_users u, tb_user_roles r where u.tipo_id=r.tipo_id and u.activo='1' order by u.usuario_id");
+            ResultSet rs = st.executeQuery("select u.usuario_id, usuario_name, usuario_password,  r.tipo_name from TBMICROTEL_USERS u, TBMICROTEL_USERSROLES r where u.tipo_id=r.tipo_id and u.activo='1' order by u.usuario_id");
             while (rs.next()) {
                 Usuario usu = new Usuario();
                 usu.setId_usuario(rs.getString(1));
@@ -85,7 +85,7 @@ public class SeguridadAdmSQLOra implements
             String nombreUsuario = usu.getNombre_usuario();
             String passwordUsuario = usu.getClave_usuario();
             String tipoUsuario = usu.getTipoUsuario();
-            PreparedStatement pst = conn.prepareStatement("insert into tb_users (usuario_id, usuario_name, usuario_password, tipo_id, activo) values (?,?,?,?,?)");
+            PreparedStatement pst = conn.prepareStatement("insert into TBMICROTEL_USERS (usuario_id, usuario_name, usuario_password, tipo_id, activo) values (?,?,?,?,?)");
 
             pst.setString(1, idUsuario);
             pst.setString(2, nombreUsuario);
@@ -116,7 +116,7 @@ public class SeguridadAdmSQLOra implements
             String nombreUsuario = usue.getNombre_usuario();
             String passwordUsuario = usue.getClave_usuario();
             String tipoUsuario = usue.getTipoUsuario();
-            PreparedStatement pst = conn.prepareStatement("update tb_users set usuario_name=?, usuario_password=?, tipo_id=? where usuario_id=?");
+            PreparedStatement pst = conn.prepareStatement("update TBMICROTEL_USERS set usuario_name=?, usuario_password=?, tipo_id=? where usuario_id=?");
 
             pst.setString(1, nombreUsuario);
             pst.setString(2, passwordUsuario);
@@ -140,7 +140,7 @@ public class SeguridadAdmSQLOra implements
 
         try {
             String idUsuario = usu.getId_usuario();
-            PreparedStatement pst = conn.prepareStatement("update tb_users set activo=? where usuario_id=?");
+            PreparedStatement pst = conn.prepareStatement("update TBMICROTEL_USERS set activo=? where usuario_id=?");
 
             pst.setString(1, "0");
             pst.setString(2, idUsuario);
